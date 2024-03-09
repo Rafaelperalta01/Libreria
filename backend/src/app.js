@@ -1,15 +1,9 @@
-require('dotenv').config();
-const { conexionDB } = require('./database/db');
-
+require('dotenv').config(); //llamo a variables de entorno
 const express = require('express')
+const routes = require('./routes/routes') //RUTAS
 
 const app = express();
-
-app.get('/', (req,res) => {
-    res.send('hola desde server')
-})
-
-conexionDB();
+app.use(routes)
 
 const PORT = process.env.PORT;
 

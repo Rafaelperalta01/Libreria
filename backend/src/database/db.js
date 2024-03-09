@@ -14,6 +14,5 @@ async function conexionDB() {
     }finally{
         client.close();
     }
-
 };
 module.exports = { conexionDB };
