@@ -10,9 +10,26 @@ async function conexionDB() {
         await client.connect();
         console.log('Conexion exitosa');
     } catch (error) {
-        console.error('Error al conectarse a la base de datos:', error);
-    }finally{
-        client.close();
+        console.error('Error al conectarse a la base de datos(db.js):', error);
     }
 };
-module.exports = { conexionDB };
+
+//Funcion de prueba 
+async function agregarLibro(libroData) {
+    const db = await conexionDB();
+
+    try {
+        const librosCollection = db.collection('libros'); 
+        const resultado = await librosCollection.insertOne(libroData);
+
+        console.log('Libro agregado correctamente:', resultado.insertedId);
+        return resultado.insertedId;
+    } catch (error) {
+        console.error('Error al agregar el libro(db.js):', error);
+        throw error;
+    } finally {
+        db.close();
+    }
+}
+
+module.exports = { conexionDB, agregarLibro };

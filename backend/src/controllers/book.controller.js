@@ -22,7 +22,7 @@ controller.ObtenerLibro = async (req, res) => {
         await conexionDB();
         
     } catch (error) {
-        console.log('error al agraegar:' + error);
+        console.log('error al agregar:' + error);
     }
 }
 
