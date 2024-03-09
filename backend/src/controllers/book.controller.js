@@ -1,4 +1,4 @@
-const { conexionDB } = require('../database/db') //importo conexion a db
+const { conectarDB, agregarLibro } = require('../database/db') //importo conexion a db
 
 const controller = {}
 
@@ -8,13 +8,24 @@ controller.index = (req,res) =>{
 
 //AGREGAR
 controller.AgregarLibro = async (req, res) => {
-    try {
-        await conexionDB();
-        
-    } catch (error) {
-        console.log('error :' + error);
+    const { titulo, autor, genero, anio } = req.body; //desestructuro body
+
+    const newLibro = { //creo objeto para pasar como parametro
+        titulo,
+        autor,
+        genero,
+        anio
     }
-}
+
+    try {
+        await conectarDB();
+        await agregarLibro(newLibro); // Agregar un libro usando la conexión establecida
+        res.json({ mensaje : 'Libro agregado con éxito' });
+    } catch (error) {
+        console.error('Error al agregar libro:', error);
+        res.status(500).json({ mensaje : 'Error al agregar libro' });
+    }
+};
 
 //OBTENER
 controller.ObtenerLibro = async (req, res) => {
