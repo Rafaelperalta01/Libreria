@@ -40,7 +40,7 @@ const AgregarLibro = () => {
 
 
     return (
-        <div className="h-92 w-1/2 bg-sky-600">
+        <div className="h-full w-full bg-sky-600">
             <h1>Agregar libro :</h1>
             <div className="flex justify-center p-10">
                 <form className="flex flex-col justify-center">
