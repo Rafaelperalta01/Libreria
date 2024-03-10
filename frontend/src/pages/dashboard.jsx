@@ -1,8 +1,13 @@
+import Navbar from "../components/navbar";
+import Sidebar from "../components/sidebar";
 
 export default function Dashboard(){
     return(
-        <div>
-            <h1>DASHBOARD</h1>
+        <>
+        <div className="h-screen w-[85%] float-right bg-gray-200">
+            <Navbar />
         </div>
+        <Sidebar />
+        </>
     )
 }
