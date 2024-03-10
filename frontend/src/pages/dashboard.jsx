@@ -58,7 +58,7 @@ export default function Dashboard(){
                     {
                         //renderizacion de libros
                         listaLibros.map(libro => (
-                            <Libro key={libro._id} titulo={libro.titulo}/>
+                            <Libro key={libro._id} titulo={libro.titulo} id={libro._id}/>
                         ))
                     }
                     </div>
