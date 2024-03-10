@@ -7,7 +7,7 @@ import Option from './opcionsidebar'
 //Nav lateral left
 export default function Sidebar() {
     return (
-        <aside className="h-screen w-[15%] rounded-br-xl float-left bg-blue-900 flex justify-center flex-col items-center text-center text-white">
+        <aside className="h-screen w-[15%] rounded-br-xl float-left bg-gradient-to-b from-blue-900 to-blue-950 flex justify-center flex-col items-center text-center text-white">
             <ul className="flex flex-col gap-12">
             <Link to={'/dashboard'}>
                 <Option imagen={books} texto={'ver todos los libros'} />

@@ -1,4 +1,4 @@
-const { conectarDB, agregarLibro } = require('../database/db') //importo conexion a db
+const { conectarDB, agregarLibro, obtenerLibros } = require('../database/db') //importo conexion a db
 
 const controller = {}
 
@@ -30,10 +30,13 @@ controller.AgregarLibro = async (req, res) => {
 //OBTENER
 controller.ObtenerLibro = async (req, res) => {
     try {
-        await conexionDB();
+        await conectarDB();
+        const listaLibros = await obtenerLibros();
+        console.log('libros obtenidos con exito')
+        res.json({ lista : JSON.stringify(listaLibros) }) //paso los datos en texto
         
     } catch (error) {
-        console.log('error al agregar:' + error);
+        console.log('error al obtener:' + error);
     }
 }
 

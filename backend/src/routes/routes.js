@@ -7,7 +7,7 @@ router.get('/', Librocontroller.index)
 
 router.post('/AgregarLibro', Librocontroller.AgregarLibro)
 
-router.get('/ObtenerLibro', Librocontroller.ObtenerLibro)
+router.get('/ObtenerLibros', Librocontroller.ObtenerLibro)
 
 router.put('/ModificarLibro', Librocontroller.ModificarLibro)
 

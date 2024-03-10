@@ -29,9 +29,25 @@ async function agregarLibro(libroData) {
         console.log('Libro agregado correctamente:', resultado.insertedId); //imprimo mensaje con el id creado por la db
         return resultado.insertedId;
     } catch (error) {
-        console.error('Error al agregar el libro:', error);
+        console.error('Error al agregar el libro(db.js):', error);
         throw new Error('Error al agregar el libro');
     }
 }
 
-module.exports = { conectarDB, agregarLibro };
+async function obtenerLibros(){
+    try {
+        if (!db) {
+            await conectarDB();
+        }
+
+        const librosCollection = db.collection('libros');
+        const libros = await librosCollection.find({}).toArray();
+        return libros;
+        
+    } catch (error) {
+        console.error('Error al buscar libros(db.js):', error);
+        throw new Error('Error al agregar el libro');
+    }
+}
+
+module.exports = { conectarDB, agregarLibro, obtenerLibros };
