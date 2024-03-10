@@ -6,6 +6,10 @@ export default function Dashboard(){
         <>
         <div className="h-screen w-[85%] float-right bg-gray-200">
             <Navbar />
+            <div className="p-10">
+                <h1 className="text-2xl">Bienvenido a nuestro sistema !</h1>
+            </div>
+            
         </div>
         <Sidebar />
         </>
