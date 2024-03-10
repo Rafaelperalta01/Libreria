@@ -17,8 +17,8 @@ const Libro = ({ titulo, autor, genero, anio }) => {
       </div>
       {hovering && ( // en caso de que hovering sea true entra el div de opciones ver y editar
         <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black bg-opacity-50 gap-5">
-          <img className='h-7 invert cursor-pointer hover:invert-[80%]' src={ojo} alt="" />
-          <img className='h-7 invert cursor-pointer hover:invert-[80%]' src={edit} alt="" />
+          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Ver detalles' src={ojo} alt="Ver" />
+          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Editar' src={edit} alt="Editar" />
         </div>
       )}
     </div>

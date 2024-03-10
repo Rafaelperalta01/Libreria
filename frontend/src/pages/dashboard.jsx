@@ -5,10 +5,12 @@ import axios from 'axios'
 import Libro from "../components/libro";
 import plus from '../assets/dashboard/plus.png'
 import Swal from "sweetalert2";
+import ModalAgregarLibro from "../components/modalAgregarLibro";
 
 export default function Dashboard(){
 
     const [listaLibros, setListaLibros] = useState([]);
+    const [modalCrearLibro, setModalCrearLibro] = useState(false);
 
     useEffect(()=>{
         Swal.fire({
@@ -27,20 +29,30 @@ export default function Dashboard(){
         })
     }, [])
 
+    const abrirModalCrear = () => {
+        setModalCrearLibro(true)
+    }
+
+    const cerrarModalCrear = () => {
+        setModalCrearLibro(false)
+    }
+
     return(
         <>
-        <div className="h-screen w-[85%] float-right bg-gray-200">
+        <div className="h-screen w-[85%] float-right bg-gray-200 ">
             <Navbar />
             <div className="p-10">
                 <h1 className="text-2xl">Bienvenido a nuestro sistema!👋</h1>
                 <div className="mt-5">
                     <div className="flex justify-between pr-20">
                         <h2>Estos son nuestros libros:</h2>
-                        <div className="flex justify-center items-center gap-2 rounded bg-sky-300 p-2 transition cursor-pointer hover:bg-sky-600 hover:text-white">
+                        <div onClick={abrirModalCrear} className="flex justify-center items-center gap-2 rounded bg-sky-300 p-2 transition cursor-pointer hover:bg-sky-600 hover:text-white">
                             <img className="h-5" src={plus} alt="Agregar" />
                             <p>Agregar libro</p>
                         </div>
                     </div>
+                    
+                    { modalCrearLibro && (<ModalAgregarLibro cerrarModal={cerrarModalCrear} />) } 
                     
                     <div className="flex gap-10 p-8 flex-wrap">
                     {
@@ -52,6 +64,7 @@ export default function Dashboard(){
                     </div>
                 </div>
             </div>
+            
         </div>
         <Sidebar />
         </>
