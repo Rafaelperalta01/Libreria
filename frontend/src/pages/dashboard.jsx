@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import axios from 'axios'
+import Libro from "../components/libro";
 
 export default function Dashboard(){
 
@@ -25,11 +26,13 @@ export default function Dashboard(){
                 <h1 className="text-2xl">Bienvenido a nuestro sistema!👋</h1>
                 <div className="mt-5">
                     <h2>Estos son nuestros libros:</h2>
+                    <div className="flex gap-10 p-8 flex-wrap">
                     {
                         listaLibros.map(libro => (
-                            <p key={libro._id}>{libro.titulo}</p> 
+                            <Libro key={libro._id} titulo={libro.titulo}/>
                         ))
                     }
+                    </div>
                 </div>
             </div>
         </div>
