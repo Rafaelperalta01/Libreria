@@ -17,6 +17,7 @@ async function conectarDB() {
     }
 }
 
+//METODO AGREGAR UN LIBRO   
 async function agregarLibro(libroData) {
     try {
         if (!db) { //en caso de que db sea null (no está instanciada), creo la conexion
@@ -34,6 +35,7 @@ async function agregarLibro(libroData) {
     }
 }
 
+//METODO OBTENER TODOS LOS LIBROS
 async function obtenerLibros(){
     try {
         if (!db) {
@@ -50,4 +52,27 @@ async function obtenerLibros(){
     }
 }
 
-module.exports = { conectarDB, agregarLibro, obtenerLibros };
+//METODO ELIMINAR
+async function eliminarLibro(libroId) {
+    try {
+        if (!db) {
+            await conectarDB();
+        }
+
+        const librosCollection = db.collection('libros');
+        const resultado = await librosCollection.deleteOne({ id: libroId }); //elimino libro por id
+
+        if (resultado.deletedCount === 1) {
+            console.log('Libro eliminado correctamente');
+            return true; // indicar que se eliminó correctamente
+        } else {
+            console.log('No se encontró ningún libro con el ID especificado');
+            return false; // indicar que no se encontró el libro para eliminar
+        }
+    } catch (error) {
+        console.error('Error al eliminar el libro:', error);
+        throw new Error('Error al eliminar el libro');
+    }
+}
+
+module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro };
