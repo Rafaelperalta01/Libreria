@@ -1,7 +1,9 @@
 import ojo from '../assets/libro/ojo.png'
-import edit from '../assets/libro/edit.png'
+import fav from '../assets/dashboard/fav.png'
+import eliminar from '../assets/libro/eliminar.png'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // uso de hook para pasar los datos a la ruta de detalles del libro
+
 
 const Libro = ({ datosLibro }) => { //desestructuro objeto
 
@@ -23,9 +25,10 @@ const Libro = ({ datosLibro }) => { //desestructuro objeto
         <p className='text-center'>. . .</p>
       </div>
       {hovering && ( // en caso de que hovering sea true entra el div de opciones ver y editar
-        <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black bg-opacity-50 gap-5">
+        <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black bg-opacity-50 gap-3">
           <img onClick={NavegarADetalles} className='h-7 invert cursor-pointer hover:invert-[80%]' title='Ver detalles' src={ojo} alt="Ver" />
-          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Editar' src={edit} alt="Editar" />
+          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Agregar a favorito' src={fav} alt="Favorito" />
+          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Eliminar' src={eliminar} alt="Eliminar" />
         </div>
       )}
     </div>
