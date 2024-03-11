@@ -4,7 +4,6 @@ import Sidebar from "../components/sidebar";
 import axios from 'axios'
 import Libro from "../components/libro";
 import plus from '../assets/dashboard/plus.png'
-import Swal from "sweetalert2";
 import ModalAgregarLibro from "../components/modalAgregarLibro";
 
 export default function Dashboard(){
@@ -13,13 +12,6 @@ export default function Dashboard(){
     const [modalCrearLibro, setModalCrearLibro] = useState(false);
 
     useEffect(()=>{
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `Bienvenido al sistema`,
-            showConfirmButton: false,
-            timer: 1500
-        });
         axios.get('http://localhost:3001/ObtenerLibros')
         .then((response)=>{
             setListaLibros(JSON.parse(response.data.lista)) //convierto datos a json
@@ -57,8 +49,8 @@ export default function Dashboard(){
                     <div className="flex gap-10 p-8 flex-wrap">
                     {
                         //renderizacion de libros
-                        listaLibros.map(libro => (
-                            <Libro key={libro._id} titulo={libro.titulo} id={libro._id}/>
+                        listaLibros.map((libro, index) => (
+                            <Libro key={index}  datosLibro={libro}/>
                         ))
                     }
                     </div>
