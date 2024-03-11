@@ -9,7 +9,7 @@ const Libro = ({ datosLibro }) => { //desestructuro objeto
   const navigate = useNavigate();
 
   const NavegarADetalles = () => {
-    navigate(`/dashboard/VerDetalles/${datosLibro.id}`, { state: datosLibro }) //declaro la direccion y paso el objeto de datos
+    navigate(`/dashboard/VerDetalles/${datosLibro._id}`, { state: datosLibro }) //declaro la direccion y paso el objeto de datos
   }
 
   return (
