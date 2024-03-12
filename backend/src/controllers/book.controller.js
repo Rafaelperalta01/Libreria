@@ -1,4 +1,4 @@
-const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro } = require('../database/db') //importo conexion a db
+const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro } = require('../database/db') //importo conexion a db
 
 const controller = {}
 
@@ -42,8 +42,17 @@ controller.ObtenerLibro = async (req, res) => {
 
 //MODIFICAR
 controller.ModificarLibro = async (req, res) => {
+
+    const id = req.body.id;
+    const datoAModificar = req.body.nuevoValor;
+
+    console.log(id, datoAModificar)
+
     try {
-        await conexionDB();
+        await conectarDB();
+        await actualizarLibro(id, datoAModificar)
+        console.log('dato actualizado con exito')
+        res.json({ mensaje : 'dato modificado con éxito' }) 
         
     } catch (error) {
         console.log('error al modificar libro(controller):' + error);

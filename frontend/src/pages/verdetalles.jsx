@@ -25,10 +25,11 @@ export default function Verdetalles(){
                         Imagen aqui
                     </div>
                     <div className=" h-96 w-1/2 p-10 bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-xl ">
-                        <ul className="flex flex-col gap-10 font-montserrat">
-                            <Inputverdetalles parrafo={'Autor'} dato={libro.autor} icon={edit} />
-                            <Inputverdetalles parrafo={'Género'} dato={libro.genero} icon={edit} />
-                            <Inputverdetalles parrafo={'Año de publicación'} dato={libro.anio} icon={edit} />
+                        <ul className="flex flex-col gap-6 font-montserrat">
+                            <Inputverdetalles id={libro._id} parrafo={'Título'} dato={libro.titulo} icon={edit} />
+                            <Inputverdetalles id={libro._id} parrafo={'Autor'} dato={libro.autor} icon={edit} />
+                            <Inputverdetalles id={libro._id} parrafo={'Género'} dato={libro.genero} icon={edit} />
+                            <Inputverdetalles id={libro._id} parrafo={'Año de publicación'} dato={libro.anio} icon={edit} />
                         </ul>
                     </div>
                 </div>

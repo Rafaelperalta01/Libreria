@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 require('dotenv').config();
 
 let db; //variable para guarda la instancia de la conexion a la db para compartirlo en todos los metodos
@@ -75,4 +75,30 @@ async function eliminarLibro(libroId) {
     }
 }
 
-module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro };
+async function actualizarLibro(libroId, nuevosDatosLibro) {
+    try {
+        if (!db) {
+            await conectarDB();
+        }
+        console.log(libroId,nuevosDatosLibro)
+
+        const librosCollection = db.collection('libros');
+        const resultado = await librosCollection.updateOne(
+            { _id: new ObjectId(libroId) },
+            { $set: nuevosDatosLibro } // actualizar los datos del libro
+        );
+
+        if (resultado.modifiedCount === 1) {
+            console.log('Libro actualizado correctamente');
+            return true;
+        } else {
+            console.log('No se encontró ningún libro con el ID especificado');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al actualizar el libro:', error);
+        throw new Error('Error al actualizar el libro');
+    }
+}
+
+module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro };
