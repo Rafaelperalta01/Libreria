@@ -3,11 +3,17 @@ import { useLocation } from "react-router-dom" //hook para acceder los datos pas
 import edit from '../assets/libro/edit.png'
 import eliminar from '../assets/libro/eliminar.png'
 import Inputverdetalles from "../components/inputVerDetalles";
+import eliminarLibro from "../utils/utils";
 
 export default function Verdetalles(){
 
     const location = useLocation();
     const libro = location.state; //variable con los datos pasados
+
+    const  eliminarlibro = () => { 
+        eliminarLibro(libro._id)
+        window.location.href = '/dashboard' // redireccionar al dashboard una vez eliminado
+    }
 
     return(
         <>
@@ -28,7 +34,7 @@ export default function Verdetalles(){
                 </div>
                 <div className="flex w-40 gap-1 mt-10 bg-red-500 text-white py-2 px-5 rounded font-tilt-neon transition hover:cursor-pointer hover:bg-red-700">
                     <img className="h-5 invert" src={eliminar} alt="Elimiar libro" />
-                    <button>Eliminar libro</button>
+                    <button onClick={eliminarlibro}>Eliminar libro</button>
                 </div>
             </div>
         </div>
