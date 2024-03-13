@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom" //hook para acceder los datos pas
 import edit from '../assets/libro/edit.png'
 import eliminar from '../assets/libro/eliminar.png'
 import Inputverdetalles from "../components/inputVerDetalles";
-import eliminarLibro from "../utils/utils";
+import utils from "../utils/utils";
 
 export default function Verdetalles(){
 
@@ -12,7 +12,7 @@ export default function Verdetalles(){
 
     const idLibro = libro._id;
     const  eliminarlibro = () => { 
-        eliminarLibro(idLibro)
+        utils.eliminarLibro(idLibro)
         window.location.href = '/dashboard'
     }
 

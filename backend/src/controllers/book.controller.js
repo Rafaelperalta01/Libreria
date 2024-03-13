@@ -2,10 +2,6 @@ const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro,
 
 const controller = {}
 
-controller.index = (req,res) =>{
-    res.send('SALUDO DESDE CONTROLLER')
-}
-
 //AGREGAR
 controller.AgregarLibro = async (req, res) => {
     const { titulo, autor, genero, anio } = req.body; //desestructuro body

@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import axios from "axios";
 import Libro from "../components/libro";
+import Swal from "sweetalert2";
 
 export default function Favoritos(){
 
@@ -11,7 +12,18 @@ export default function Favoritos(){
     useEffect(()=>{
         axios.get('http://localhost:3001/ObtenerFavoritos')
         .then((response)=>{
-            setLista(JSON.parse(response.data.lista))
+            const datos = JSON.parse(response.data.lista);
+            if(datos.length === 0){
+                Swal.fire({
+                    position: "center",
+                    icon: "info",
+                    title: `No hay libros favoritos`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else{
+                setLista(datos)
+            }
         })
         .catch((e)=>{
             alert('error al obtener libros favoritos')

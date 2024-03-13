@@ -3,8 +3,6 @@ const router = express.Router();
 const Librocontroller = require('../controllers/book.controller')
 
 
-router.get('/', Librocontroller.index)
-
 router.post('/AgregarLibro', Librocontroller.AgregarLibro)
 
 router.get('/ObtenerLibros', Librocontroller.ObtenerLibro)
