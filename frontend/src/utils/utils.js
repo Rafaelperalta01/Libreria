@@ -23,4 +23,21 @@ const eliminarLibro = (idLibro) => {
   })
 }
 
-export default eliminarLibro
+const toggleFav = (id) => {
+  axios.put(`http://localhost:3001/TildarFavorito/${id}`)
+  .then((response)=> {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `${response.data.mensaje}`,
+      showConfirmButton: false,
+      timer: 600
+    });
+  })
+  .catch((e)=>{
+    alert('error '+e)
+  })
+}
+
+
+export default {eliminarLibro, toggleFav}

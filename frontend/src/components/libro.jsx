@@ -1,11 +1,10 @@
 import ojo from '../assets/libro/ojo.png'
-import fav from '../assets/dashboard/fav.png'
+import corazon from '../assets/dashboard/corazon.png'
+import corazonrojo from '../assets/dashboard/corazonrojo.png'
 import eliminar from '../assets/libro/eliminar.png'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // uso de hook para pasar los datos a la ruta de detalles del libro
-import eliminarLibro from '../utils/utils';
-
-
+import utils from '../utils/utils';
 
 const Libro = ({ datosLibro }) => { //desestructuro objeto
 
@@ -15,7 +14,6 @@ const Libro = ({ datosLibro }) => { //desestructuro objeto
   const NavegarADetalles = () => {
     navigate(`/dashboard/VerDetalles/${datosLibro._id}`, { state: datosLibro }) //declaro la direccion y paso el objeto de datos
   }
-
 
   return (
     <div
@@ -30,8 +28,8 @@ const Libro = ({ datosLibro }) => { //desestructuro objeto
       {hovering && ( // en caso de que hovering sea true entra el div de opciones ver y editar
         <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black bg-opacity-50 gap-3">
           <img onClick={NavegarADetalles} className='h-7 invert cursor-pointer hover:invert-[80%]' title='Ver detalles' src={ojo} alt="Ver" />
-          <img className='h-7 invert cursor-pointer hover:invert-[80%]' title='Agregar a favorito' src={fav} alt="Favorito" />
-          <img onClick={() => eliminarLibro(datosLibro._id) } className='h-7 invert cursor-pointer hover:invert-[80%]' title='Eliminar' src={eliminar} alt="Eliminar" />
+          <img onClick={()=> utils.toggleFav(datosLibro._id)} className='h-7  cursor-pointer ' title='Agregar a favorito' src={datosLibro.favorito ? corazonrojo : corazon} alt="Favorito" />
+          <img onClick={() => utils.eliminarLibro(datosLibro._id) } className='h-7 invert cursor-pointer hover:invert-[80%]' title='Eliminar' src={eliminar} alt="Eliminar" />
         </div>
       )}
     </div>

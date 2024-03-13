@@ -1,4 +1,4 @@
-const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro } = require('../database/db') //importo conexion a db
+const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito } = require('../database/db') //importo conexion a db
 
 const controller = {}
 
@@ -80,11 +80,22 @@ controller.EliminarLibro = async (req, res) => {
 
 //AGREGAR/QUITAR FAVORITO
 controller.TildarFavorito = async (req, res) => {
+    const libro = req.params.id;
+    
     try {
-        await conexionDB();
+        await conectarDB();
+        const estadoCambiado = await tildarFavorito(libro);
+        //Verifico retornos de la funcion y envio mensajes
+        if(estadoCambiado === 1){
+            res.json({ mensaje : 'Se agregó a favoritos' })
+        }else if(estadoCambiado === 2){
+            res.json({ mensaje : 'Se eliminó de favoritos' })
+        }else{
+            res.json({ mensaje : 'Error al marcar favorito'})
+        }
         
     } catch (error) {
-        console.log('error al agregar favorito:' + error);
+        console.log('error al actualizar estado favorito(controller):' + error);
     }
 }
 

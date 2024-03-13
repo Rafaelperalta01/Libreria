@@ -23,6 +23,9 @@ async function agregarLibro(libroData) {
         if (!db) { //en caso de que db sea null (no está instanciada), creo la conexion
             await conectarDB();
         }
+
+        //agrego la variable favorito para guardarla en la db por defecto será false
+        libroData.favorito = false; 
         
         const librosCollection = db.collection('libros'); //agrego la credencial de la collecion
         const resultado = await librosCollection.insertOne(libroData); 
@@ -100,4 +103,35 @@ async function actualizarLibro(libroId, nuevosDatosLibro) {
     }
 }
 
-module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro };
+//FUNCION TOGGLE FAVORITO       
+async function tildarFavorito(libroId) {
+    try {
+      if (!db) {
+        await conectarDB();
+      }
+      //busco el libro seleccionado en la db
+      const libro = await db.collection('libros').findOne({ _id: new ObjectId(libroId) });
+      const nuevoEstadoFavorito = !libro.favorito; //cambio el estado del campo favorito
+  
+      const resultado = await db.collection('libros').updateOne(
+        { _id: new ObjectId(libroId) },
+        { $set: { favorito: nuevoEstadoFavorito } } //modifico el estado
+      );
+      
+      if (resultado.modifiedCount === 1) {
+        if(nuevoEstadoFavorito){
+            return 1 //retorno 1 en caso de que se haya agregado a favoritos
+        }else{
+            return 2 //retorno 2 en caso de que se quite de favoritos
+        }
+      } else {
+        console.log('No se pudo actualizar el estado de favorito');
+        return false; //falso en caso de error
+      }
+    } catch (error) {
+      console.error('Error al actualizar el estado de favorito:', error);
+      throw new Error('Error al actualizar el estado de favorito');
+    }
+  }
+
+module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito };

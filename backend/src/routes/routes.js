@@ -13,7 +13,7 @@ router.put('/ModificarLibro', Librocontroller.ModificarLibro)
 
 router.delete('/EliminarLibro/:id', Librocontroller.EliminarLibro)
 
-router.put('/TildarFavorito', Librocontroller.TildarFavorito)
+router.put('/TildarFavorito/:id', Librocontroller.TildarFavorito)
 
 router.get('/ObtenerFavoritos', Librocontroller.ObtenerFavoritos)
 
