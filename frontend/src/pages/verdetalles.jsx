@@ -10,9 +10,10 @@ export default function Verdetalles(){
     const location = useLocation();
     const libro = location.state; //variable con los datos pasados
 
+    const idLibro = libro._id;
     const  eliminarlibro = () => { 
-        eliminarLibro(libro._id)
-        window.location.href = '/dashboard' // redireccionar al dashboard una vez eliminado
+        eliminarLibro(idLibro)
+        window.location.href = '/dashboard'
     }
 
     return(

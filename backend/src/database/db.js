@@ -60,7 +60,7 @@ async function eliminarLibro(libroId) {
         }
 
         const librosCollection = db.collection('libros');
-        const resultado = await librosCollection.deleteOne({ id: libroId }); //elimino libro por id
+        const resultado = await librosCollection.deleteOne({ _id: new ObjectId(libroId) }); //elimino libro por id
 
         if (resultado.deletedCount === 1) {
             console.log('Libro eliminado correctamente');
@@ -80,7 +80,6 @@ async function actualizarLibro(libroId, nuevosDatosLibro) {
         if (!db) {
             await conectarDB();
         }
-        console.log(libroId,nuevosDatosLibro)
 
         const librosCollection = db.collection('libros');
         const resultado = await librosCollection.updateOne(

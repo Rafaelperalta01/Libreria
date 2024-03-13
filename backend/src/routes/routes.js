@@ -11,7 +11,7 @@ router.get('/ObtenerLibros', Librocontroller.ObtenerLibro)
 
 router.put('/ModificarLibro', Librocontroller.ModificarLibro)
 
-router.delete('/EliminarLibro', Librocontroller.EliminarLibro)
+router.delete('/EliminarLibro/:id', Librocontroller.EliminarLibro)
 
 router.put('/TildarFavorito', Librocontroller.TildarFavorito)
 

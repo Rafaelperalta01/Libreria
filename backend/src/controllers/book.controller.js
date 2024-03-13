@@ -61,7 +61,7 @@ controller.ModificarLibro = async (req, res) => {
 
 //ELIMINAR
 controller.EliminarLibro = async (req, res) => {
-    const idLibroAEliminar = req.body.id;
+    const idLibroAEliminar = req.params.id;
 
     try {
         await conectarDB();

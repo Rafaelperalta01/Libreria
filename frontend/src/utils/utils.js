@@ -2,9 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const eliminarLibro = (idLibro) => {
-  axios.delete('http://localhost:3001/EliminarLibro', {
-    idLibro
-  })
+  axios.delete(`http://localhost:3001/EliminarLibro/${idLibro}`)
   .then((response) => {
     Swal.fire({
       position: "top-end",
