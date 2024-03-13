@@ -132,6 +132,23 @@ async function tildarFavorito(libroId) {
       console.error('Error al actualizar el estado de favorito:', error);
       throw new Error('Error al actualizar el estado de favorito');
     }
-  }
+}
 
-module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito };
+async function obtenerFavoritos() {
+    try {
+        if (!db) {
+            await conectarDB();
+        }
+
+        const librosCollection = db.collection('libros');
+        const condicion = { favorito: true };
+        const libros = await librosCollection.find(condicion).toArray();
+        return libros;
+        
+    } catch (error) {
+        console.error('Error al buscar libros favoritos:', error);
+        throw new Error('Error al buscar libros favoritos');
+    }
+}
+
+module.exports = { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito, obtenerFavoritos };

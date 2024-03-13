@@ -1,4 +1,4 @@
-const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito } = require('../database/db') //importo conexion a db
+const { conectarDB, agregarLibro, obtenerLibros, eliminarLibro, actualizarLibro, tildarFavorito, obtenerFavoritos } = require('../database/db') //importo conexion a db
 
 const controller = {}
 
@@ -102,7 +102,10 @@ controller.TildarFavorito = async (req, res) => {
 //OBTENER FAVORITOS
 controller.ObtenerFavoritos = async (req, res) => {
     try {
-        await conexionDB();
+        await conectarDB();
+        const listaLibros = await obtenerFavoritos();
+        console.log('libros favoritos obtenidos')
+        res.json({ lista : JSON.stringify(listaLibros) })
         
     } catch (error) {
         console.log('error al obtener favoritos:' + error);
