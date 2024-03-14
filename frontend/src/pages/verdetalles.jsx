@@ -19,13 +19,13 @@ export default function Verdetalles(){
     return(
         <>
         <div className="h-screen w-[85%] float-right bg-gray-200">
-            <div className="p-10">
-                <h1 className="text-2xl">Detalles del libro: <b className="text-blue-700">{libro.titulo}</b></h1>
-                <div className="flex mt-10 h-auto bg-gray-300 rounded-xl">
-                    <div className="h-96 w-1/2">
+            <div className="p-10 pt-3 lg:pt-10">
+                <h1 className="text-lg lg:text-2xl">Detalles del libro: <b className="text-blue-700">{libro.titulo}</b></h1>
+                <div className="flex flex-col mt-3 h-auto bg-gray-300 rounded-xl lg:flex-row lg:mt-10">
+                    <div className="h-64 w-full">
                         Imagen aqui
                     </div>
-                    <div className=" h-96 w-1/2 p-10 bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-xl ">
+                    <div className=" h-1/2 w-full p-7 bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-xl ">
                         <ul className="flex flex-col gap-6 font-montserrat">
                             <Inputverdetalles id={libro._id} parrafo={'Título'} dato={libro.titulo} icon={edit} />
                             <Inputverdetalles id={libro._id} parrafo={'Autor'} dato={libro.autor} icon={edit} />
@@ -34,7 +34,7 @@ export default function Verdetalles(){
                         </ul>
                     </div>
                 </div>
-                <div className="flex w-40 gap-1 mt-10 bg-red-500 text-white py-2 px-5 rounded font-tilt-neon transition hover:cursor-pointer hover:bg-red-700">
+                <div className="flex w-40 gap-1 mt-5 bg-red-500 text-white py-2 px-5 rounded font-tilt-neon transition hover:cursor-pointer hover:bg-red-700 lg:mt-10">
                     <img className="h-5 invert" src={eliminar} alt="Elimiar libro" />
                     <button onClick={eliminarlibro}>Eliminar libro</button>
                 </div>
