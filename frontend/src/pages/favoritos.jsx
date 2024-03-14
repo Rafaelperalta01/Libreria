@@ -31,22 +31,23 @@ export default function Favoritos(){
 
     },[])
 
-    return(
+    return (
         <>
-        <div className="h-screen w-[85%] float-right bg-gray-200">
+          <div className="h-screen w-[85%] float-right bg-gray-200">
             <Navbar />
             <div className="p-10">
-                <h1 className="text-2xl">Estos son tus libros favoritos !</h1>
-                <div className="flex gap-10 p-8 flex-wrap">
-                    {
-                    lista.map((libro, index)=> (
-                        <Libro key={index} datosLibro={libro} />
-                    ))
-                    }
-                </div>
+              <h1 className="text-2xl">Estos son tus libros favoritos!</h1>
+              <div className="flex mt-2 justify-center gap-4 p-3 flex-wrap max-h-[70vh] overflow-y-auto sm:gap-10 sm:p-3 sm:justify-start">
+                {/* Utilizamos 'max-h-[70vh]' para establecer la altura máxima */}
+                {
+                  lista.map((libro, index) => (
+                    <Libro key={index} datosLibro={libro} />
+                  ))
+                }
+              </div>
             </div>
-        </div>
-        <Sidebar />
+          </div>
+          <Sidebar />
         </>
-    )
+      )
 }

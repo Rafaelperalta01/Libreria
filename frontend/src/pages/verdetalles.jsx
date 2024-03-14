@@ -18,7 +18,7 @@ export default function Verdetalles(){
 
     return(
         <>
-        <div className="h-screen w-[85%] float-right bg-gray-200">
+        <div className="h-screen w-[85%] float-right bg-gray-200 overflow-hidden">
             <div className="p-10 pt-3 lg:pt-10">
                 <h1 className="text-lg lg:text-2xl">Detalles del libro: <b className="text-blue-700">{libro.titulo}</b></h1>
                 <div className="flex flex-col mt-3 h-auto bg-gray-300 rounded-xl lg:flex-row lg:mt-10">

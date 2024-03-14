@@ -29,35 +29,36 @@ export default function Dashboard(){
         setModalCrearLibro(false)
     }
 
-    return(
+    return (
         <>
-        <div className="h-screen w-[85%] float-right bg-gray-200 ">
+          <div className="h-screen w-[85%] float-right bg-gray-200 ">
             <Navbar />
             <div className="p-5 lg:p-10">
-                <h1 className="text-xl lg:text-2xl">Bienvenido a nuestro sistema!👋</h1>
-                <div className="mt-5">
-                    <div className="flex justify-between lg:pr-20">
-                        <h2>Estos son nuestros libros:</h2>
-                        <div onClick={abrirModalCrear} className="flex justify-center items-center gap-2 rounded bg-sky-300 p-2 transition cursor-pointer hover:bg-sky-600 hover:text-white">
-                            <img className="h-5" src={plus} alt="Agregar" />
-                            <p className="hidden lg:block">Agregar libro</p>
-                        </div>
-                    </div>
-                    
-                    { modalCrearLibro && (<ModalAgregarLibro cerrarModal={cerrarModalCrear} />) } 
-                    
-                    <div className="flex gap-10 p-8 flex-wrap">
-                    {
-                        //renderizacion de libros
-                        listaLibros.map((libro, index) => (
-                            <Libro key={index}  datosLibro={libro}/>
-                        ))
-                    }
-                    </div>
+              <h1 className="text-xl lg:text-2xl">Bienvenido a nuestro sistema!👋</h1>
+              <div className="mt-5">
+                <div className="flex justify-between lg:pr-20">
+                  <h2>Estos son nuestros libros:</h2>
+                  <div onClick={abrirModalCrear} className="flex justify-center items-center gap-2 rounded bg-sky-300 p-2 transition cursor-pointer hover:bg-sky-600 hover:text-white">
+                    <img className="h-5" src={plus} alt="Agregar" />
+                    <p className="hidden lg:block">Agregar libro</p>
+                  </div>
                 </div>
+      
+                {modalCrearLibro && (<ModalAgregarLibro cerrarModal={cerrarModalCrear} />)}
+      
+                <div className="flex gap-2 justify-center p-2 flex-wrap max-h-[70vh] overflow-y-auto sm:gap-10 sm:p-8 sm:justify-start">
+                  {/* Utilizamos 'max-h-[70vh]' para establecer la altura máxima */}
+                  {
+                    //renderizacion de libros
+                    listaLibros.map((libro, index) => (
+                      <Libro key={index} datosLibro={libro} />
+                    ))
+                  }
+                </div>
+              </div>
             </div>
-        </div>
-        <Sidebar />
+          </div>
+          <Sidebar />
         </>
     )
 }

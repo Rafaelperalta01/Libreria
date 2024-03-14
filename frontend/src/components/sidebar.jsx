@@ -1,5 +1,5 @@
 import salir from '../assets/dashboard/salir.png'
-import fav from '../assets/dashboard/corazon.png'
+import fav from '../assets/dashboard/fav.png'
 import books from '../assets/dashboard/book.png'
 import { Link } from 'react-router-dom'
 import Option from './opcionsidebar'
