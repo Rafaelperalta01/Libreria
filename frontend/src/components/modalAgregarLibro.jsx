@@ -13,7 +13,7 @@ const ModalAgregarLibro = ({ cerrarModal }) => {
 
     const enviarDatos = (e) => {
         e.preventDefault();
-        if (validacionCamposVacios()) { //el metodo solo funcionará si todos los campos están completos
+        if (validacionCamposVacios() && validarNumero()) { //el metodo solo funcionará si todos los campos están completos y si el año es un numero
             axios.post('http://localhost:3001/AgregarLibro', {
                 titulo,
                 autor,
@@ -44,7 +44,7 @@ const ModalAgregarLibro = ({ cerrarModal }) => {
 
 
     const validacionCamposVacios = () => {
-        if (titulo === '' || autor === '' || genero === '' || anio === '') {
+        if (titulo === '' || autor === '' || genero === '' || anio === '' ) {
             Swal.fire({
                 position: "top",
                 icon: "error",
@@ -58,6 +58,20 @@ const ModalAgregarLibro = ({ cerrarModal }) => {
         }
     }
 
+    const validarNumero = () => {
+        if (isNaN(anio)) {
+            Swal.fire({
+                position: "top",
+                icon: "info",
+                title: `El año debe ser un numero`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false; //retorna false si el año NO es un número
+        } else {
+            return true; //retorna true si el año es un número
+        }
+    }
 
     return (
         <div className="h-full w-full text-white absolute top-0 left-1/2 transform -translate-x-1/2 bg-[#101077d5] z-50 backdrop-blur-md rounded-lg sm:h-[70vh] md:w-[600px] md:mt-[50px]">{/* Ubicacion central del modal crear */}
